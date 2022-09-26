@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=3 uid="uid://q0nj0sj5uyjn"]
+
+[ext_resource type="PackedScene" uid="uid://c0dr45re8i7bd" path="res://Scenes/HexGridTool/hex_grid_tool.tscn" id="1_be56b"]
+[ext_resource type="Script" path="res://Scenes/Main.gd" id="1_v0ib0"]
+[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="2_nd4ey"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ykmuy"]
+keycode = 4194306
+
+[sub_resource type="Shortcut" id="Shortcut_m2of4"]
+events = [SubResource("InputEventKey_ykmuy")]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_v0ib0")
+
+[node name="DirectionalLight3d" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0
+
+[node name="HexGridTool" parent="." instance=ExtResource("1_be56b")]
+
+[node name="CameraController" type="Node3D" parent="."]
+script = ExtResource("2_nd4ey")
+movment_speed = 10.0
+rotation_speed = 10.0
+
+[node name="Elevation" type="Node3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 0.831537, 0.555469, 0, -0.555469, 0.831537, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraController/Elevation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+offset_right = 1152.0
+offset_bottom = 31.0
+alignment = 1
+
+[node name="PresetsMenuButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 311.0
+offset_right = 423.0
+offset_bottom = 31.0
+text = "Show Presets"
+
+[node name="SaveAsButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 427.0
+offset_right = 547.0
+offset_bottom = 31.0
+text = "Save Preset As"
+
+[node name="LineEdit" type="LineEdit" parent="UI/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2i(200, 0)
+offset_left = 551.0
+offset_right = 751.0
+offset_bottom = 31.0
+placeholder_text = "Enter preset name here"
+
+[node name="ClearButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 755.0
+offset_right = 841.0
+offset_bottom = 31.0
+text = "Clear Grid"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2i(0, 20)
+offset_top = 35.0
+offset_right = 1152.0
+offset_bottom = 55.0
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="GrassType" type="Button" parent="UI/VBoxContainer2"]
+unique_name_in_owner = true
+offset_left = 456.0
+offset_right = 508.0
+offset_bottom = 31.0
+size_flags_horizontal = 4
+text = "Grass"
+
+[node name="StoneType" type="Button" parent="UI/VBoxContainer2"]
+unique_name_in_owner = true
+offset_left = 512.0
+offset_right = 565.0
+offset_bottom = 31.0
+size_flags_horizontal = 4
+text = "Stone"
+
+[node name="EditModeButton" type="CheckButton" parent="UI/VBoxContainer2"]
+unique_name_in_owner = true
+offset_left = 569.0
+offset_right = 695.0
+offset_bottom = 31.0
+button_pressed = true
+shortcut = SubResource("Shortcut_m2of4")
+text = "Edit Mode"
+
+[editable path="HexGridTool"]

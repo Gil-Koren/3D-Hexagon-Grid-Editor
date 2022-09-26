@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bae67l7fika4p"]
+
+[ext_resource type="Texture2D" uid="uid://b6bg5eebbhrcc" path="res://Assets/Icons/trash.png" id="1_81id5"]
+
+[node name="PresetRow" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="Name" type="Label" parent="."]
+custom_minimum_size = Vector2i(300, 0)
+offset_top = 7.0
+offset_right = 300.0
+offset_bottom = 33.0
+text = "Preset Name"
+
+[node name="LoadButton" type="Button" parent="."]
+offset_left = 304.0
+offset_right = 350.0
+offset_bottom = 40.0
+text = "Load"
+
+[node name="DeleteButton" type="Button" parent="."]
+custom_minimum_size = Vector2i(50, 0)
+layout_direction = 2
+offset_left = 354.0
+offset_right = 404.0
+offset_bottom = 40.0
+icon = ExtResource("1_81id5")
+icon_alignment = 1
+expand_icon = true
