@@ -4,8 +4,10 @@
 This repository holds code that can be used to create a hexagon grid with index for each tile, be saved as a resource and loaded later, and can easily add new tiles to create with!
 
 ## How do I use this?
+The Docs for this tool is still in the making. Make sure to check it out when it's out!
 The To use this tool, you'll need the HexGridTool folder that can be found in the Scenes folder, and the GridPreset.gd and SaveGame.gd from the Scrtips folder.
 Then, you can add the HexGridTool scene to your game and it should work!
+
 
 
 ## NOTES
