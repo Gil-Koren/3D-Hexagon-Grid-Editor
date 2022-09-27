@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://b8a7dw5ip7xng"]
 
-[ext_resource type="Script" path="res://Scenes/GrassTile/grass_tile.gd" id="1_3np8o"]
 [ext_resource type="PackedScene" uid="uid://dpjdgnp3jwx6r" path="res://Assets/grass.glb" id="1_8saj5"]
+[ext_resource type="Script" path="res://Scenes/HexGridTool/Tiles/GrassTile/grass_tile.gd" id="1_doipb"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_no7fp"]
 points = PackedVector3Array(-0.466211, 1.38778e-17, -0.285579, 0.466757, 0.2, 0.264491, 0.450269, 0.2, 0.280957, 0.474369, 0, 0.268842, -0.466211, -1.38778e-17, 0.285579, -0.0288979, 0.2, -0.528982, -0.458599, 0.2, 0.280957, 0.457609, 1.38778e-17, -0.285579, 0.0208392, 1.38778e-17, 0.537685, 0.466757, 0.2, -0.264491, 0.0208392, 1.38778e-17, -0.537685, -0.458599, 0.2, -0.280957, -0.0288979, 0.2, 0.528982, 0.0867037, 0.2, -0.495843, 0.0867037, 0.2, 0.495843, -0.0294404, 0, -0.537685, -0.0294404, 0, 0.537685, 0.474369, 0, -0.268842, 0.407238, -2.77556e-17, 0.319158, 0.400712, 0.2, -0.313992, 0.205658, -1.38778e-17, -0.436843, 0.088063, -1.38778e-17, 0.504, 0.020568, 0.2, -0.528982, 0.020568, 0.2, 0.528982, 0.400712, 0.2, 0.313992, 0.407238, -1.38778e-17, -0.319158, 0.205658, -1.38778e-17, 0.436843, 0.088063, -1.38778e-17, -0.504, -0.147036, 1.38778e-17, 0.470421, -0.147036, 4.16334e-17, -0.470421, 0.202396, 0.2, 0.429772, 0.202396, 0.2, -0.429772)
 
 [node name="GrassTile" type="Node3D"]
-script = ExtResource("1_3np8o")
+script = ExtResource("1_doipb")
 
 [node name="grass" parent="." instance=ExtResource("1_8saj5")]
 

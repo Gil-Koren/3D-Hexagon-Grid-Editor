@@ -1,14 +1,13 @@
 class_name SaveGame
 extends Resource
 
-
 const SAVE_GAME_BASE_PATH := "user://Presets/"
 
 @export var preset : Resource = Preset.new()
 
 func write_savegame(custom_name : String) -> void:
 	ResourceSaver.save(self, get_save_path(custom_name))
-	
+
 
 static func load_savegame(custom_name : String) -> Resource:
 	var save_path := get_save_path(custom_name)

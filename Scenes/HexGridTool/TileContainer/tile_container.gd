@@ -8,9 +8,9 @@ extends Node3D
 
 
 var TILES_SCENES : Dictionary = {
-	0 : preload("res://Scenes/GhostTile/ghost_tile.tscn"),
-	1 : preload("res://Scenes/GrassTile/grass_tile.tscn"),
-	2 : preload("res://Scenes/StoneTile/stone_tile.tscn")
+	0 : preload("res://Scenes/HexGridTool/Tiles/GhostTile/ghost_tile.tscn"),
+	1 : preload("res://Scenes/HexGridTool/Tiles/GrassTile/grass_tile.tscn"),
+	2 : preload("res://Scenes/HexGridTool/Tiles/StoneTile/stone_tile.tscn")
 }
 
 enum TILE_TYPES {

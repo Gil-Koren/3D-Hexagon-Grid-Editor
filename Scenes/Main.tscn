@@ -49,30 +49,15 @@ alignment = 1
 
 [node name="PresetsMenuButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-offset_left = 311.0
-offset_right = 423.0
+offset_left = 475.0
+offset_right = 587.0
 offset_bottom = 31.0
 text = "Show Presets"
 
-[node name="SaveAsButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-offset_left = 427.0
-offset_right = 547.0
-offset_bottom = 31.0
-text = "Save Preset As"
-
-[node name="LineEdit" type="LineEdit" parent="UI/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2i(200, 0)
-offset_left = 551.0
-offset_right = 751.0
-offset_bottom = 31.0
-placeholder_text = "Enter preset name here"
-
 [node name="ClearButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-offset_left = 755.0
-offset_right = 841.0
+offset_left = 591.0
+offset_right = 677.0
 offset_bottom = 31.0
 text = "Clear Grid"
 

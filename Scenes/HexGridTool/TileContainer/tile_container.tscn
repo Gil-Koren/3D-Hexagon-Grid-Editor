@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhvfhytsvdvbp"]
+
+[ext_resource type="Script" path="res://Scenes/HexGridTool/TileContainer/tile_container.gd" id="1_kfh3i"]
+[ext_resource type="PackedScene" uid="uid://cgte80bgyhj5t" path="res://Scenes/HexGridTool/Tiles/GhostTile/ghost_tile.tscn" id="2_dg0jp"]
+
+[node name="TileContainer" type="Node3D"]
+script = ExtResource("1_kfh3i")
+
+[node name="TileHolder" type="Node3D" parent="."]
+
+[node name="GhostTile" parent="TileHolder" instance=ExtResource("2_dg0jp")]
+
+[node name="Label3d" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.339827, 0)

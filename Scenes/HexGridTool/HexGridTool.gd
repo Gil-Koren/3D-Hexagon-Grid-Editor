@@ -3,25 +3,34 @@ extends Node3D
 # Movment in the Z axis by multiplies of sin(60) <- Degrees
 # Movment in the X axis by multiplies of 0.5
 
-const TILE_CONTAINER := preload("res://Scenes/TileContainer/tile_container.tscn")
+const TILE_CONTAINER := preload("res://Scenes/HexGridTool/TileContainer/tile_container.tscn")
+
+@onready var presets_window := preload("res://Scenes/HexGridTool/GUI/Presets_window.tscn")
+var presets_window_instance : PopupPanel
+var _save : SaveGame
+var preset : Preset
 
 var tile_type_selected : int = 1
 var edit_mode : bool = true
 var tiles_dictionary : Dictionary = {}
-var preset : Preset
+
 const ADJACENTS : Array[Vector2] = [
 	Vector2(1,1), Vector2(1,-1), Vector2(-1,1), Vector2(-1,-1), Vector2(2,0), Vector2(-2,0)
 ]
 
-func _ready():
-	pass
+signal window_opened
+signal window_closed
+
+func _ready(): # This makes sure the grid starts with an initial tile
+	add_tile(Vector2.ZERO,0)
 
 
 func initialize_grid():
-	if preset.preset_dictionary.is_empty():
+	if preset.preset_dictionary.is_empty(): # Prevents loading an empty preset
+		clear_tiles()
 		add_tile(Vector2(0,0) , 0)
 	else:
-		clear_tiles()
+		clear_tiles() 
 		for key in preset.preset_dictionary:
 			if key not in tiles_dictionary:
 				add_tile(key,preset.preset_dictionary[key])
@@ -49,7 +58,7 @@ func tile_change(is_added : bool, changed_container : Node3D):
 					remove_tile(cur_index + offset)
 		recheck_ghost_tile(cur_index)
 	
-	if tiles_dictionary.is_empty():
+	if tiles_dictionary.is_empty(): # Makes sure there is atleast 1 ghost tile
 		add_tile(Vector2.ZERO,0)
 
 func add_tile(index : Vector2, tile_type : int):
@@ -83,4 +92,40 @@ func clear_tiles() -> void:
 
 func new_tile_type_selected(tile_type_enum : int):
 	tile_type_selected = tile_type_enum
+
+func clear_grid(): 
+	clear_tiles()
+	add_tile(Vector2(0,0),0)
+
+func load_preset(preset_name : String): 
+	_save = SaveGame.load_savegame(preset_name)
+	preset = _save.preset
+	initialize_grid()
+
+func delete_preset(selected_preset : String): 
+	var dir = Directory.new()
+	dir.open("user://Presets/")
+	dir.remove(selected_preset)
+
+func show_custom_save_menu(): 
+	var new_window : PopupPanel= presets_window.instantiate()
+	new_window.connect("preset_to_load_selected",load_preset)
+	new_window.connect("preset_to_delete_selected",delete_preset)
+	new_window.connect("save_as_pressed", _save_preset_as)
+	new_window.connect("close_requested",func():emit_signal("window_closed"))
+	emit_signal("window_opened")
+	add_child(new_window)
+	new_window.popup_centered()
+	presets_window_instance = new_window
+
+func _save_preset_as(entered_name : String): 
+	var new_save = SaveGame.new()
+	var new_preset = Preset.new()
+	for key in tiles_dictionary:
+		new_preset.save_new_tile_container(key,tiles_dictionary[key].tile_type)
+	new_save.preset = new_preset
+	if SaveGame.save_exists(entered_name):
+		delete_preset(entered_name)
+	new_save.write_savegame(entered_name)
+	presets_window_instance.intialize_rows()
 

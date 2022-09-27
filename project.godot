@@ -22,7 +22,7 @@ _global_script_classes=[{
 "base": "Node3D",
 "class": &"Tile",
 "language": &"GDScript",
-"path": "res://Scenes/Tile.gd"
+"path": "res://Scenes/HexGridTool/Tiles/Tile.gd"
 }]
 _global_script_class_icons={
 "Preset": "",
